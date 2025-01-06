@@ -1,0 +1,924 @@
+/*===========================================
+            Style the page
+===========================================*/
+body {
+	margin: 0;
+    background: url('../img/content.jpg') center/cover no-repeat;
+	font-family: "Raleway", sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* This ensures the body takes at least the full height of the viewport */
+}
+
+/* Style the header at right side */
+header {
+    background-color: #FEFAE0;
+    margin-left: 250px;
+    padding-left: 40px;
+    height: 100px;
+    text-align: center;
+    font-size: 30px;
+    color: #D4A373;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-icon {
+    margin-left: auto; /* This pushes the icon to the right */
+    margin-right: 20px; /* Add some right margin for spacing */
+    color: #D4A373;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color on hover for links and icons */
+.header-icon :hover {
+    color: #CCD5AE;
+}
+
+/* Style the content at right side under header */
+.content {
+    margin-left: 250px;
+    padding-left: 20px;
+}
+
+/*===========================================
+  CSS for sidenav (left side) in every page
+===========================================*/
+/* Style the side navigation */
+.sidenav {
+    padding: 10px;
+    height: 100%;
+    width: 230px;
+    position: fixed;
+    z-index: 1;
+    font-size: 15px;
+    top: 0;
+    left: 0;
+    background-color: #FEFAE0;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Side navigation links and icons */
+.sidenav a, .sidenav-icon {
+    color: #D4A373;
+    padding: 10px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color on hover for links and icons */
+.sidenav a:hover, .sidenav-icon:hover {
+    color: #CCD5AE;
+}
+
+/* Change color when active for links and icons */
+.sidenav a.active, .sidenav-icon.active {
+    color: #CCD5AE;
+}
+
+.logo-img {
+    align-content: center;
+    width: 90%;
+}
+
+/* Style the copyright */
+.copyright {
+    text-align: center;
+    font-size: 12px;
+    color: #000;
+    padding-bottom: 20px;
+    margin-top: auto; /* This pushes the footer to the bottom */
+}
+/*===========================================
+  CSS for smaller page
+===========================================*/
+@media only screen and (max-width: 768px) {
+    header, .content {
+        margin-left: 100px;
+        padding-left: 30px;
+    }
+    header {
+        font-size: 24px;
+        height: 70px;
+    }
+    .sidenav, .sidenav a, .sidenav-icon {
+        width: 100px;
+        padding: 6px;
+        font-size: 10px;
+    }
+    .logo-img {
+        width: 80px;
+        padding: 5px;
+    }
+    .copyright {
+        width: 80px;
+        padding: 11px;
+        font-size: 10px;
+    }
+    body {
+        width: 100%;
+    }
+}
+
+/*===========================================
+  Melyssa 
+===========================================*/
+
+.complaint-table {
+    width: 80%; /* Make the table occupy full width */
+    border-collapse: collapse; /* Collapse borders between table cells */
+    margin: 20px auto; /* Adds top and bottom margin and auto left and right margins for center alignment */
+}
+
+.complaint-table, .complaint-table th, .complaint-table td {
+    border: 1px solid #ddd; /* Add borders to table cells */
+    padding: 8px 12px; /* Add padding to table cells */
+}
+
+.complaint-table2 {
+    width: 90%; /* Make the table occupy full width */
+    border-collapse: collapse; /* Collapse borders between table cells */
+    margin: 20px auto; /* Adds top and bottom margin and auto left and right margins for center alignment */
+    text-align: center;
+}
+
+.complaint-table2, .complaint-table2 th, .complaint-table2 td {
+    border: 1px solid #ddd; /* Add borders to table cells */
+    padding: 8px 12px; /* Add padding to table cells */
+}
+
+
+.edit-complaint-form {
+    text-align: center;
+}
+
+.savechanges-complaint-form {
+    margin-left: 400px; /* Adjust the value as per your preference */
+}
+
+.complaintlink-container {
+    display: flex;
+    justify-content: center; /* Horizontally center-aligns the items */
+    align-items: center;     /* Vertically center-aligns the items */
+    margin-bottom: 30px;
+}
+
+.complaint-link {
+    margin-left: 400px;
+    padding: 10px 20px;
+    margin: 5px;
+    text-decoration: none;
+    background-color: #FEFAE0;
+    color: #000000;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.complaint-form {
+    max-width: 500px;       /* Limit the maximum width of the form */
+    margin: 30px auto;           /* Center the form horizontally */
+    padding: 20px;          /* Add some padding around the form content */
+    border: 1px solid #ccc; /* Add a border around the form */
+    border-radius: 8px;     /* Add rounded corners to the form */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+    background-color: #f9f9f9; /* Set a light background color */
+}
+
+.submit-complaint-btn {
+    background-color: #E9EDC9;
+    color: #000000;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 180px; /* Adjust the value as needed */
+}
+
+.savechanges-complaint-btn {
+    background-color: #FEFAE0;
+    color: #000000;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 580px;
+}
+
+.update-complaint-btn {
+    background-color: #E9EDC9;
+    color: #000000;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 220px; /* Adjust the value as needed */
+}
+
+.staff-img {
+    border-radius: 0%; 
+    border: 0px solid #ffffff; /* white border around profile pictures */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* subtle shadow for images */
+    display: block; /* ensure the image takes up its space without whitespace */
+    margin: 0 auto 20px; /* centered with some bottom margin */
+}
+/*===========================================
+  CSS  for style table - using id (staff feedback)
+===========================================*/
+#staff_feedback {
+	border-collapse: collapse;
+	width: 80%;
+    margin: 10px auto; /* This will center the table horizontally */
+}
+#staff_feedback td, #staff_feedback th {
+	border: 1px solid #616161;
+    padding: 3px;
+}
+#staff_feedback tr:nth-child(even){background-color: #edede8;}
+#staff_feedback tr:hover {background-color: #f8edeb;}
+#staff_feedback th {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+	background-color: #d6ccc2;
+	color: black;
+    position: relative;
+}
+#staff_feedback td {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+	color: black;
+}
+/* Style for the tooltip-like messages */
+.tooltip {
+    visibility: hidden;
+    width: 350px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    font-size: 11px;
+    position: absolute;
+    z-index: 1;
+    bottom: 110%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* Show the tooltip when hovering over the th.question-cell */
+th.question-cell:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+/*===========================================
+  eli - CSS for user_activity page
+===========================================*/
+#user_activity {
+	border-collapse: collapse;
+	width: 90%;
+    margin: 0 auto; /* This will center the table horizontally */
+}
+
+#user_activity tr:hover {background-color: #f0efeb;}
+#user_activity th {
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: center;
+	background-color: #d6ccc2;
+	color: black;
+}
+
+#user_activity td {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+	color: black;
+}
+
+/*===========================================
+  CSS for report page eli
+===========================================*/
+.grid {
+    display: flex;
+	justify-content: center;
+	align-items: flex-start;
+    flex-wrap: wrap; /* Allow cards to wrap to the next line */
+}
+
+.card {
+    width: 300px; /* Set a fixed width of 100px */
+    margin: 20px;
+    background-color: #E6E6FA;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover,
+.card:focus,
+.card:active {
+    color: #0070f3;
+    border-color: #0070f3;
+}
+
+.card h2 {
+    margin: 0 0 1rem 0;
+    font-size: 1.5rem;
+	margin-bottom: 10px;
+}
+
+.card p {
+    margin: 0;
+    font-size: 1.25rem;
+    line-height: 1.5;
+}
+
+
+@media (max-width: 768px) {
+	.card {
+		flex: 0 1 calc(48% - 20px); /* Adjust the width for smaller screens */
+	}
+}
+
+/*===========================================
+  siti - CSS for book management
+===========================================*/
+.userbooks {
+    border-collapse: collapse;
+    width: 90%;
+    margin-top: 20px;
+    margin-bottom: 20px; /* Add margin bottom to create space between table and search container */
+}
+
+/* Style for table header in userbooks class */
+.userbooks th, .userbooks td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+/* Alternating row colors for better readability in userbooks class */
+.userbooks tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Style for the table header row in userbooks class */
+.userbooks th {
+    background-color: #CCD5AE;
+    color: black;
+}
+
+/* Style for the search form in userbooks class */
+.userbooks form {
+    display: inline-block;
+}
+
+/* Style for the search input and button in userbooks class */
+.userbooks input[type="text"] {
+    padding: 8px;
+    margin-right: 5px;
+}
+
+.userbooks #search-button {
+    padding: 8px;
+    background-color: #CCD5AE;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* Style for the search container */
+.search-container {
+    text-align: right;
+    padding: 10px;
+    margin-top: 20px;
+    margin-right: 20px; /* Add margin right to create space between search container and table */
+    margin-bottom: 20px;
+}
+
+/* Style for the search input and button in the search container */
+.search-container input[type="text"] {
+    padding: 8px;
+    margin-right: 5px;
+}
+
+.search-container #search-button {
+    padding: 8px;
+    background-color: #CCD5AE;
+    color: black;
+    border: none;
+    cursor: pointer;
+}
+
+.center-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center; 
+    margin: auto;
+}
+.booksbutton {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #CCD5AE; /* Your desired background color */
+    color: black;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-right: 10px; /* Adjust spacing between buttons if needed */
+}
+
+/* Apply the same style for links inside the button-container div */
+.booksbutton-container {
+    text-decoration: none;
+    
+}
+
+/* Add a margin-bottom to create space between the buttons and the search bar */
+.gap {
+    margin-bottom: 20px; /* Adjust the value as needed */
+}
+
+.booksdeletebutton-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin: 20px auto; /* Adjust margin as needed */
+}
+
+.booksdelete-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #CCD5AE; /* Your desired background color */
+    color: black;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-right: 10px; /* Adjust spacing between buttons if needed */
+    cursor: pointer;
+    border: none; /* Remove default button border */
+    outline: none; /* Remove default button outline */
+}
+
+/* Style for the editbooks table */
+.editbooks {
+    border-collapse: collapse;
+    width: 90%;
+    margin: 20px auto; /* Center the table and add margin for spacing */
+}
+
+/* Style for table header in editbooks class */
+.editbooks th, .editbooks td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+/* Alternating row colors for better readability in editbooks class */
+.editbooks tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Style for the table header row in editbooks class */
+.editbooks th {
+    background-color: #CCD5AE;
+    color: black;
+}
+
+/* Style for form elements in editbooks class */
+.editbooks input[type="text"],
+.editbooks select,
+.editbooks input[type="file"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 6px;
+    margin: 0;
+}
+
+/* Style for buttons in editbooks class */
+.editbooks .button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.editbooks .crud-form {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #CCD5AE;
+    color: black;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+/* Style for the Add Book form */
+.add-book-form {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.add-book-form h2 {
+    text-align: center;
+    color: #333;
+}
+
+.add-book-form label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.add-book-form input,
+.add-book-form select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.add-book-form input[type="file"] {
+    margin-top: 10px;
+}
+
+.add-book-form .button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Style for the Add Book button */
+.add-book-form .add-book-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #CCD5AE; /* Your desired background color */
+    color: black;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-right: 10px; /* Adjust spacing between buttons if needed */
+}
+
+/* Style for the "Back to Book List" button */
+.add-book-form .back-to-list-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #CCD5AE; /* Your desired background color */
+    color: black;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.add-book-form .back-to-list-button:hover {
+    background-color: #AABD8C; /* Change color on hover if desired */
+}
+
+/*===========================================
+  winnie - CSS for user authentication
+===========================================*/
+.body-login {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #FEFAE0;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+  }
+  
+  p {
+    color: #666;
+    text-align: center;
+  }
+  
+  div {
+    margin-top: 20px;
+  }
+
+.container {
+    max-width: 800px;
+    background-color: #fff;
+    padding: 70px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+.btn {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center; 
+    justify-content: center; 
+    width: 150px;
+    margin: 5px auto;
+  }
+  
+  .btn a {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #CCD5AE;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin-bottom: 15px; 
+  }
+  
+  .btn a:hover,
+  .login-btn input[type="submit"]:hover {
+    background-color: #E9EDC9;
+  }
+
+  .login-btn input[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #CCD5AE;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin-bottom: 15px; 
+    border: none; /* Remove the border */
+    cursor: pointer; /* Change cursor on hover */
+    font-size: 16px; /* Font size */
+}
+
+.signup_link a,
+.reset a,
+.back a {
+    color: #D4A373; 
+    text-decoration: none;  
+}
+
+.signup_link a:hover,
+.reset a:hover,
+.back a {
+    text-decoration: underline; 
+}
+
+  .txt_field {
+    position: relative;
+    margin-bottom: 30px;
+  }
+  
+  .txt_field input {
+    width: 100%;
+    padding: 10px;
+    background: none;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #CCD5AE;
+    color: #333;
+    font-size: 18px;
+    transition: border-bottom 0.3s ease;
+  }
+  
+  .txt_field input:focus {
+    border-bottom: 2px solid #E9EDC9;
+  }
+  
+  /* Additional styling for labels */
+  .txt_field label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    color: #999;
+    transform: translateY(-50%);
+    transition: all 0.3s ease;
+    pointer-events: none;
+  }
+  
+  /* Shrink the label on focus or when there's content in the input */
+  .txt_field input:focus ~ label,
+  .txt_field input:valid ~ label {
+    top: -5px;
+    font-size: 14px;
+    color: #CCD5AE;
+  }
+  
+
+  .reg-btn input[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #CCD5AE;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin-bottom: 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .reg-btn input[type="submit"]:hover {
+    background-color: #E9EDC9;
+  }
+  
+.reg-table {
+    width: 100%;
+}
+
+.reg-table td {
+    padding-top: 5%;
+}
+
+  @media screen and (min-width: 600px) {
+    .options {
+      display: inline-block;
+      margin: 0 10px;
+    }
+
+  }
+  /*===========================================
+  atiqah - CSS for event_page page
+===========================================*/
+.event-button {
+    display: block;
+    width: 200px;
+    height: 60px;
+    margin: 150px auto;
+    font-size: 18px;
+    text-align: center;
+    line-height: 60px;
+    background-color: #D4A373;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease; /* Add a smooth transition effect */
+}
+
+.event-button:hover {
+    background-color: #FAEDCD; /* Change the background color on hover */
+}
+
+.button-container {
+    display: flex;
+    gap: 10px; /* Adjust the gap between buttons as needed */
+}
+
+.event-detail-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-top: 10px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #D4A373;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: none;
+}
+
+.event-detail-button:hover {
+    background-color: #FAEDCD; /* Change the background color on hover */
+}
+
+/*===========================================
+  atiqah - CSS for event_view page
+===========================================*/
+#event_view {
+	border-collapse: collapse;
+	width: 90%;
+    margin: 0 auto; /* This will center the table horizontally */
+}
+
+#event_view tr:hover {background-color: #D1D1D1;}
+#event_view th {
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: center;
+	background-color: #E9EDC9;
+	color: black;
+}
+
+#event_view td {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+	color: black;
+}
+
+/*===========================================
+  atiqah - CSS for event_add page
+===========================================*/
+#addEvent_table {
+	border-collapse: collapse;
+	width: 100%;
+    margin: 0 auto; /* This will center the table horizontally */
+}
+
+#addEvent_table tr:hover {background-color: #D1D1D1;}
+#addEvent_table th {
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: center;
+	background-color: #C0DBEA;
+	color: black;
+}
+
+#addEvent_table td {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+	color: black;
+}
+/*===========================================
+  fani - CSS for staff room booking management page
+===========================================*/
+#staff_booking {
+    font-family: "Raleway", sans-serif; 
+    border-collapse: collapse; 
+    width: 90%; 
+    margin: 0 auto;
+}
+
+#staff_booking tr:hover {
+    background-color: #f0efeb;
+}
+
+#staff_booking th {
+    padding-top: 15px; /* Adjust top padding */
+    padding-bottom: 15px; /* Adjust bottom padding */
+    text-align: center; 
+    background-color: #d6ccc2;
+    color: black;
+}
+
+#staff_booking td {
+    padding-top: 5px; /* Adjust top padding */
+    padding-bottom: 5px; /* Adjust bottom padding */
+    text-align: center; 
+    color: black;
+}
+
+/* Add this style block for button positioning */
+.booking-button {
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+    text-decoration: none;
+    padding: 10px 15px;
+    color : rgb(180, 130, 30);
+}
+/*********************************************************/
+/*===========================================
+  fani - CSS for user booking management
+===========================================*/
+#user_booking {
+    font-family: "Raleway", sans-serif; 
+    border-collapse: collapse; 
+    width: 90%; 
+    margin: 0 auto;
+}
+
+#user_booking tr:hover {
+    background-color: #f0efeb;
+}
+
+#user_booking th {
+    padding-top: 15px; /* Adjust top padding */
+    padding-bottom: 15px; /* Adjust bottom padding */
+    text-align: center; 
+    background-color: #d6ccc2;
+    color: black;
+}
+
+#user_booking td {
+    padding-top: 10px; /* Adjust top padding */
+    padding-bottom: 10px; /* Adjust bottom padding */
+    text-align: center; 
+    color: black;
+}
+/* Add this style block for button positioning */
+.booking-button {
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+    text-decoration: none;
+    padding: 10px 15px;
+    color : rgb(180, 130, 30);
+}
+/***************************************************/
+    
+
