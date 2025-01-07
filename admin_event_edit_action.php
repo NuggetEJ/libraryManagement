@@ -114,7 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     eventStatus = '$eventStatus', eventPhoto = '$uploadfileName'
                     WHERE eventID = $id";
 
-                $status = update_DBTable($conn, $sql);
+                $status = updateDbTable($conn, $sql);
 
                 if ($status) {
                     echo '<script>';
@@ -143,7 +143,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             eventStatus = '$eventStatus'
             WHERE eventID = $id";
 
-        $status = update_DBTable($conn, $sql);
+        $status = updateDbTable($conn, $sql);
 
         if ($status) {
             echo '<script>';
@@ -163,7 +163,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exit;
 }
 
-function update_DBTable($conn, $sql) {
+// Function to insert data to the database table
+function updateDbTable($conn, $sql) {
     if (mysqli_query($conn, $sql)) {
         return true;
     } else {
