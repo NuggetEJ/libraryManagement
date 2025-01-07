@@ -1,6 +1,10 @@
 <?php
 session_start();
 include("config.php");
+
+// Define a constant for the "Back" link
+define("BACK_LINK", '<a href="javascript:history.back()">Back</a>');
+
 if(!isset($_SESSION["userEmail"])){
     header("location:logout.php");
     exit;
@@ -129,13 +133,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 } else {
                     // There is an error while uploading the image
                     echo "Sorry, there was an error uploading your file.<br>";
-                    echo '<a href="javascript:history.back()">Back</a>';
+                    echo BACK_LINK;
                 }
             } else {
-                echo '<a href="javascript:history.back()">Back</a>';
+                echo BACK_LINK;
             }
         } else {
-            echo '<a href="javascript:history.back()">Back</a>';
+            echo BACK_LINK;
         }
     }
 }
