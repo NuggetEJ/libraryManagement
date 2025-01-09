@@ -184,4 +184,3 @@ function update_DBTable($conn, $sql)
         return false;
     }
 }
-?>
