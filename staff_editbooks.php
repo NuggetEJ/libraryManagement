@@ -134,16 +134,16 @@ if (isset($_FILES['books']['tmp_name'][$bookID]['bookPhoto']) && $_FILES['books'
                             <option value="Fiction" <?php if ($book['bookCategory'] == 'Fiction') echo 'selected'; ?>>Fiction</option>
                             <option value="Non-Fiction" <?= $book['bookCategory'] === 'Non-Fiction' ? 'selected' : ''; ?>>Non-Fiction</option>
                             <option value="Mystery" <?php if ($book['bookCategory'] == 'Mystery') echo 'selected'; ?>>Mystery</option>
-                                <option value="Science Fiction" <?php if ($book['bookCategory'] == 'Science Fiction') echo 'selected'; ?>>Science Fiction</option>
-                                <option value="Romance" <?php if ($book['bookCategory'] == 'Romance') echo 'selected'; ?>>Romance</option>
-                                <option value="Biography" <?php if ($book['bookCategory'] == 'Biography') echo 'selected'; ?>>Biography</option>
-                                <option value="History" <?php if ($book['bookCategory'] == 'History') echo 'selected'; ?>>History</option>
-                                <option value="Fantasy" <?php if ($book['bookCategory'] == 'Fantasy') echo 'selected'; ?>>Fantasy</option>
-                                <option value="Self-help" <?php if ($book['bookCategory'] == 'Self-help') echo 'selected'; ?>>Self-help</option>
-                                <option value="Educational" <?php if ($book['bookCategory'] == 'Educational') echo 'selected'; ?>>Educational</option>
-                                <option value="Comic" <?php if ($book['bookCategory'] == 'Comic') echo 'selected'; ?>>Comic</option>
-                                <option value="Suspense/Thriller" <?php if ($book['bookCategory'] == 'Suspense/Thriller') echo 'selected'; ?>>Suspense/Thriller</option>
-                                <option value="Classic" <?php if ($book['bookCategory'] == 'Classic') echo 'selected'; ?>>Classic</option>
+                            <option value="Science Fiction" <?php if ($book['bookCategory'] == 'Science Fiction') echo 'selected'; ?>>Science Fiction</option>
+                            <option value="Romance" <?php if ($book['bookCategory'] == 'Romance') echo 'selected'; ?>>Romance</option>
+                            <option value="Biography" <?php if ($book['bookCategory'] == 'Biography') echo 'selected'; ?>>Biography</option>
+                            <option value="History" <?php if ($book['bookCategory'] == 'History') echo 'selected'; ?>>History</option>
+                            <option value="Fantasy" <?php if ($book['bookCategory'] == 'Fantasy') echo 'selected'; ?>>Fantasy</option>
+                            <option value="Self-help" <?php if ($book['bookCategory'] == 'Self-help') echo 'selected'; ?>>Self-help</option>
+                            <option value="Educational" <?php if ($book['bookCategory'] == 'Educational') echo 'selected'; ?>>Educational</option>
+                            <option value="Comic" <?php if ($book['bookCategory'] == 'Comic') echo 'selected'; ?>>Comic</option>
+                            <option value="Suspense/Thriller" <?php if ($book['bookCategory'] == 'Suspense/Thriller') echo 'selected'; ?>>Suspense/Thriller</option>
+                            <option value="Classic" <?php if ($book['bookCategory'] == 'Classic') echo 'selected'; ?>>Classic</option>
                             </select>
                         </td>
                         <td><input type="text" name="books[<?php echo $book['bookID']; ?>][bookISBN]" value="<?php echo $book['bookISBN']; ?>" required></td>
