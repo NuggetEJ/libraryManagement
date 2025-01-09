@@ -1,7 +1,7 @@
 <?php
 session_start();
-include("config.php");
-if(!isset($_SESSION["staffEmail"])){
+include "config.php";
+if (!isset($_SESSION["staffEmail"])) {
     header("location:logout.php");
     exit;
 }
@@ -18,7 +18,7 @@ if (mysqli_stmt_fetch($stmt)) {
 mysqli_stmt_close($stmt);
 
 // This action is called when the Delete link is clicked
-if(isset($_GET["id"]) && $_GET["id"] != ""){
+if (isset($_GET["id"]) && $_GET["id"] != "") {
     $id = $_GET["id"];
 
     // Fetch the image filename from the database
@@ -44,7 +44,7 @@ if(isset($_GET["id"]) && $_GET["id"] != ""){
         $uploadfileName = $row['eventPhoto'];
 
         // Delete the image file from the uploads folder if it exists
-        $uploadsDirectory = 'uploads/'; 
+        $uploadsDirectory = 'uploads/';
         $imagePath = $uploadsDirectory . $uploadfileName;
     }
 }

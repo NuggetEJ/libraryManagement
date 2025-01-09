@@ -1,7 +1,7 @@
 <?php
 session_start();
-include("config.php");
-if(!isset($_SESSION["staffEmail"])){
+include "config.php";
+if (!isset($_SESSION["staffEmail"])) {
     header("location:logout.php");
     exit;
 }
@@ -18,15 +18,15 @@ if (mysqli_stmt_fetch($stmt)) {
 mysqli_stmt_close($stmt);
 
 //variables
-$action="";
-$id="";
+$action = "";
+$id = "";
 $eventName = "";
 $eventDesc = "";
-$eventDateStart =" ";
+$eventDateStart = " ";
 $eventTimeStart = "";
 $eventDateEnd = "";
 $eventTimeEnd = "";
-$eventLocation =" ";
+$eventLocation = " ";
 $eventCategory = "";
 
 //for upload
@@ -138,7 +138,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //close the database connection
 mysqli_close($conn);
 
-function insertTo_DBTable($conn, $stmt) {
+function insertTo_DBTable($conn, $stmt)
+{
     if (mysqli_stmt_execute($stmt)) {
         return true;
     } else {
