@@ -132,8 +132,8 @@ if (isset($_FILES['books']['tmp_name'][$bookID]['bookPhoto']) && $_FILES['books'
                         <td>
                             <select name="books[<?php echo $book['bookID']; ?>][bookCategory]" required>
                             <option value="Fiction" <?php if ($book['bookCategory'] == 'Fiction') echo 'selected'; ?>>Fiction</option>
-                                <option value="Non-Fiction" <?php if ($book['bookCategory'] == 'Non-Fiction') echo 'selected'; ?>>Non-Fiction</option>
-                                <option value="Mystery" <?php if ($book['bookCategory'] == 'Mystery') echo 'selected'; ?>>Mystery</option>
+                            <option value="Non-Fiction" <?= $book['bookCategory'] === 'Non-Fiction' ? 'selected' : ''; ?>>Non-Fiction</option>
+                            <option value="Mystery" <?php if ($book['bookCategory'] == 'Mystery') echo 'selected'; ?>>Mystery</option>
                                 <option value="Science Fiction" <?php if ($book['bookCategory'] == 'Science Fiction') echo 'selected'; ?>>Science Fiction</option>
                                 <option value="Romance" <?php if ($book['bookCategory'] == 'Romance') echo 'selected'; ?>>Romance</option>
                                 <option value="Biography" <?php if ($book['bookCategory'] == 'Biography') echo 'selected'; ?>>Biography</option>
