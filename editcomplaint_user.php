@@ -147,7 +147,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <option value="Computer/Printer Issues" <?php if ($complaint['issueType'] == 'Computer/Printer Issues') echo 'selected'; ?>>Computer/Printer Issues</option>
                         <option value="other" <?php if ($complaint['issueType'] == 'other') echo 'selected'; ?>>other</option>
                     </select></td>
-                        <td><textarea name="complaints[<?php echo $complaint['complaintID']; ?>][complaintDescription]" required><?php echo $complaint['complaintDescription']; ?></textarea></td>
+                        <td>
+                    <textarea name="complaints[<?= $complaint['complaintID']; ?>][complaintDescription]" required>
+                    <?= htmlspecialchars($complaint['complaintDescription'], ENT_QUOTES, 'UTF-8'); ?>
+                    </textarea>
+                        </td>
                         <td><input type="file" name="complaints[<?php echo $complaint['complaintID']; ?>][complaintPhoto]"></td>
                     </tr>
                 <?php endforeach; ?>
