@@ -1,6 +1,6 @@
 <?php
 session_start();
-use Config; 
+use Config;
 
 // Variables
 $room_name = "";
