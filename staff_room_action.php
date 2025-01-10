@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('config.php');
+use Config; 
 
 // Variables
 $room_name = "";
@@ -52,4 +52,3 @@ function updateDbTable($conn, $sql)
         return false;
     }
 }
-?>
