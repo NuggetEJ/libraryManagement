@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('config.php');
+use Config;
 
 // Check if the ID parameter is set
 if (isset($_GET['id']) && $_GET['id'] != "") {
@@ -21,4 +21,4 @@ else {
 echo '<a href="user_booking.php">Back</a>';
 
 mysqli_close($conn);
-?>
+
