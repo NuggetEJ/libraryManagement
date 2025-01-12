@@ -36,7 +36,7 @@ if ($result->num_rows > 0) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <title>Library Management System</title>
     <meta charset="UTF-8">
@@ -73,7 +73,7 @@ if ($result->num_rows > 0) {
 			exit();
 		}
 		else{
-			echo '<a href="logout.php" class="header-icon"><i class="fa fa-sign-out"></i></a>';	
+            <a href="logout.php" class="header-icon"><i class="fa fa-sign-out"></i></a>
 		}			
 		?>
     </header>
@@ -93,7 +93,7 @@ if ($result->num_rows > 0) {
                     <tr>
                         <td><?php echo $complaint['issueType']; ?></td>
                         <td><?php echo $complaint['complaintDescription']; ?></td>
-                        <td><img src="<?php echo $complaint['complaintPhoto']; ?>" alt="Complaint Photo" width="100", height="100"></td>
+                        <td><img src="<?php echo $complaint['complaintPhoto']; ?>" alt="Complaint Photo" width="100" height="100"></td>
                         <td><?php echo $complaint['complaintStatus']; ?></td>
                         <td><?php echo $complaint['dateSubmitted']; ?></td>
                         <td><?php echo $complaint['notes']; ?></td>
