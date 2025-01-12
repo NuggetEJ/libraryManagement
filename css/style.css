@@ -910,15 +910,5 @@ h1 {
     text-align: center; 
     color: black;
 }
-/* Add this style block for button positioning */
-.booking-button {
-    float: right;
-    margin-top: 10px;
-    margin-right: 10px;
-    text-decoration: none;
-    padding: 10px 15px;
-    color : rgb(180, 130, 30);
-}
-/***************************************************/
-    
 
+/***************************************************/

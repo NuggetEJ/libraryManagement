@@ -1,0 +1,6 @@
+{
+    "sonarlint.connectedMode.project": {
+        "connectionId": "websystem",
+        "projectKey": "NuggetEJ_libraryManagement"
+    }
+}

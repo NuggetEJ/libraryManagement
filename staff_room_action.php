@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('config.php');
+use Config;
 
 // Variables
 $room_name = "";
@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             VALUES ('$room_name', '$description', '$capacity', '$availability')";
     }
 
-    $status = update_DBTable($conn, $sql);
+    $status = updateDbTable($conn, $sql);
 
     if ($status) {
         echo $room_descID ? "Room data updated successfully!<br>" : "Room data saved successfully!<br>";
@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 mysqli_close($conn);
 
 // Function to update data in the database table
-function update_DBTable($conn, $sql)
+function updateDbTable($conn, $sql)
 {
     if (mysqli_query($conn, $sql)) {
         return true;
@@ -52,4 +52,3 @@ function update_DBTable($conn, $sql)
         return false;
     }
 }
-?>
