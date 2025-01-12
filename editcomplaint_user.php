@@ -142,12 +142,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <option value="Damaged Book" <?php if ($complaint['issueType'] == 'Damaged Book') echo 'selected'; ?>>Damaged Book</option>
                         <option value="Facility Malfunctions" <?php if ($complaint['issueType'] == 'Facility Malfunctions') echo 'selected'; ?>>Facility Malfunctions</option>
                         <option value="Damaged Furniture" <?php if ($complaint['issueType'] == 'Damaged Furniture') echo 'selected'; ?>>Damaged Furniture</option>
-                        <option value="Wi-Fi/Internet Issues" <?php if ($complaint['issueType'] == 'Wi-Fi/Internet Issues') echo 'selected'; ?>>Wi-Fi/Internet Issues</option>
+                        <option value="Wi-Fi/Internet Issues" <?= $complaint['issueType'] === 'Wi-Fi/Internet Issues' ? 'selected' : ''; ?>>Wi-Fi/Internet Issues</option>
                         <option value="Safety Issues" <?php if ($complaint['issueType'] == 'Safety Issues') echo 'selected'; ?>>Safety Issues</option>
                         <option value="Computer/Printer Issues" <?php if ($complaint['issueType'] == 'Computer/Printer Issues') echo 'selected'; ?>>Computer/Printer Issues</option>
                         <option value="other" <?php if ($complaint['issueType'] == 'other') echo 'selected'; ?>>other</option>
                     </select></td>
-                        <td><textarea name="complaints[<?php echo $complaint['complaintID']; ?>][complaintDescription]" required><?php echo $complaint['complaintDescription']; ?></textarea></td>
+                        <td>
+                    <textarea name="complaints[<?= $complaint['complaintID']; ?>][complaintDescription]" required>
+                    <?= htmlspecialchars($complaint['complaintDescription'], ENT_QUOTES, 'UTF-8'); ?>
+                    </textarea>
+                        </td>
                         <td><input type="file" name="complaints[<?php echo $complaint['complaintID']; ?>][complaintPhoto]"></td>
                     </tr>
                 <?php endforeach; ?>
