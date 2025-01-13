@@ -14,5 +14,8 @@
         </include>
     </coverage>
 
-    
+    <env name="DB_HOST" value="127.0.0.1"/>
+    <env name="DB_DATABASE" value="library"/>
+    <env name="DB_USER" value="root"/>
+    <env name="DB_PASSWORD" value=""/>
 </phpunit>
