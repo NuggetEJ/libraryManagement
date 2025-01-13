@@ -109,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 eventPhoto = '$uploadfileName'
                 WHERE eventID = $id AND userID = " . $_SESSION["UID"];
 
-            $status = update_DBTable($conn, $sql);
+            $status = updateDbTable($conn, $sql);
 
             if ($status) {
                 echo '<script>';
