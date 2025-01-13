@@ -1,10 +1,9 @@
 <?php
 use PHPUnit\Framework\TestCase;
 
-class MockMysqliResult {
-    public $num_rows;
-
+class MockMysqliResult extends mysqli_result {
     public function __construct($num_rows) {
+        // Set the num_rows property directly
         $this->num_rows = $num_rows;
     }
 }
