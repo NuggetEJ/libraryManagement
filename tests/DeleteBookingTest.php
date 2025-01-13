@@ -8,17 +8,26 @@ class DeleteBookingTest extends TestCase
     // Set up the database connection before each test
     public function setUp(): void
     {
-        $this->conn = new mysqli("localhost", "root", "", "library");
+        $this->conn = new mysqli(
+            getenv('DB_HOST'),
+            getenv('DB_USER'),
+            getenv('DB_PASSWORD'),
+            getenv('DB_NAME')
+        );
 
         if ($this->conn->connect_error) {
-            die("Connection failed: " . $this->conn->connect_error);
+            throw new Exception("Connection failed: " . $this->conn->connect_error);
         }
+
+        // Begin transaction for cleanup
+        $this->conn->begin_transaction();
     }
 
     // Tear down the connection after each test
     public function tearDown(): void
     {
         if (isset($this->conn)) {
+            $this->conn->rollback(); // Rollback changes
             $this->conn->close();
         }
     }
