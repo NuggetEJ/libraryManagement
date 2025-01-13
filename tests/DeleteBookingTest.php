@@ -1,6 +1,14 @@
 <?php
 use PHPUnit\Framework\TestCase;
 
+class MockMysqliResult {
+    public $num_rows;
+
+    public function __construct($num_rows) {
+        $this->num_rows = $num_rows;
+    }
+}
+
 class DeleteBookingTest extends TestCase
 {
     private $mockConn;
@@ -26,13 +34,8 @@ class DeleteBookingTest extends TestCase
     {
         $bookingId = 6;
 
-        // Create a mock for mysqli_result class
-        $mockResult = $this->getMockBuilder(mysqli_result::class)
-                           ->onlyMethods(['num_rows'])  // Mock only the num_rows method
-                           ->getMock();
-
-        // Mock num_rows to return 0 (no rows after deletion)
-        $mockResult->method('num_rows')->willReturn(0);
+        // Create a mock result with num_rows set to 0 (no rows after deletion)
+        $mockResult = new MockMysqliResult(0);
 
         // Mock the query method to return the mocked result
         $this->mockConn->method('query')
