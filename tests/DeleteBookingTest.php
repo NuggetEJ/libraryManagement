@@ -35,6 +35,8 @@ class DeleteBookingTest extends TestCase
 
         // Mock the result to return an empty result set
         $mockResultFetch = $this->createMockResult([]);
+        
+        // Set up the mock to return the mock result for the SELECT query
         $this->mockDatabase->method('query')
                            ->with($sqlFetch)
                            ->willReturn($mockResultFetch);
