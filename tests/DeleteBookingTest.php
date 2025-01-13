@@ -49,9 +49,9 @@ class DeleteBookingTest extends TestCase
 
         // Mock the fetch_assoc method to return the data (null if no data)
         $mockResult->method('fetch_assoc')->willReturn($data ? $data : null);
-        
-        // Mock the num_rows property, which should return the number of rows (0 for no result)
-        $mockResult->method('num_rows')->willReturn(count($data));
+
+        // Set the num_rows property directly, since it's a public property
+        $mockResult->num_rows = count($data);
 
         return $mockResult;
     }
