@@ -31,6 +31,6 @@ jobs:
       # Step 4: Run PHPUnit tests
       - name: Run PHPUnit tests
         run: |
-          ./vendor/bin/phpunit --bootstrap config.php tests/DeleteBookingTest.php  # Run tests using PHPUnit
-          ./vendor/bin/phpunit --bootstrap config.php tests/CreateBookingTest.php
-          ./vendor/bin/phpunit --bootstrap config.php tests/EditBookingTest.php
+          ./vendor/bin/phpunit --bootstrap tests/DeleteBookingTest.php  # Run tests using PHPUnit
+          ./vendor/bin/phpunit --bootstrap tests/CreateBookingTest.php
+          ./vendor/bin/phpunit --bootstrap tests/EditBookingTest.php
