@@ -38,6 +38,9 @@ class DeleteBookingTest extends TestCase
 
         // Fetch the result
         $resultFetch = $this->mockDatabase->query($sqlFetch);
+
+        // Ensure that the fetch operation returns the mock result
+        $this->assertNotFalse($resultFetch); // Ensure resultFetch is not false
         $row = $resultFetch->fetch_assoc();
 
         // Assert that no rows are returned (booking should be deleted)
