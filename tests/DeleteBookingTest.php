@@ -31,13 +31,13 @@ class DeleteBookingTest extends TestCase
 
         // Simulate fetching the booking details to verify it has been deleted
         $sqlFetch = "SELECT * FROM booking WHERE bookingID = $bookingID";
-        $resultFetch = $this->mockDatabase->query($sqlFetch);
 
         // Mock the result to return an empty result set
         $mockResultFetch = $this->createMockResult([]);
         $this->mockDatabase->method('query')->with($sqlFetch)->willReturn($mockResultFetch);
 
         // Fetch the result
+        $resultFetch = $this->mockDatabase->query($sqlFetch);
         $row = $resultFetch->fetch_assoc();
 
         // Assert that no rows are returned (booking should be deleted)
