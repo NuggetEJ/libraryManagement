@@ -16,10 +16,11 @@ class DeleteBookingTest extends TestCase
     public function testDeleteBooking()
     {
         // Mock the booking ID to be deleted
-        $bookingID = 6;
+        $bookingID = 1;
 
         // Mock the query execution for deletion
         $this->mockDatabase->method('query')
+                          ->with("DELETE FROM booking WHERE bookingID = $bookingID")
                           ->willReturn(true); // Simulate successful deletion
 
         // Simulate the deletion of a booking
@@ -34,7 +35,9 @@ class DeleteBookingTest extends TestCase
 
         // Mock the result to return an empty result set
         $mockResultFetch = $this->createMockResult([]);
-        $this->mockDatabase->method('query')->with($sqlFetch)->willReturn($mockResultFetch);
+        $this->mockDatabase->method('query')
+                           ->with($sqlFetch)
+                           ->willReturn($mockResultFetch);
 
         // Fetch the result
         $resultFetch = $this->mockDatabase->query($sqlFetch);
@@ -55,7 +58,7 @@ class DeleteBookingTest extends TestCase
                           ->getMock();
 
         // Mock the fetch_assoc method to return the data
-        $mockResult->method('fetch_assoc')->willReturn($data);
+        $mockResult->method('fetch_assoc')->willReturn($data ? array_shift($data) : false);
 
         return $mockResult;
     }
