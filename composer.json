@@ -1,0 +1,15 @@
+{
+    "name": "nurir/librarymanagement",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nur Irfani",
+            "email": "nurirfani3004@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require-dev": {
+        "phpunit/phpunit": "^11.5"
+    }
+}
