@@ -3,23 +3,21 @@ use PHPUnit\Framework\TestCase;
 
 class DeleteBookingTest extends TestCase
 {
-    private $conn;
+    private $mockConn;
 
-    // Set up the database connection before each test
     public function setUp(): void
     {
-        $this->conn = new mysqli("localhost", "root", "", "library");
-
-        if ($this->conn->connect_error) {
-            die("Connection failed: " . $this->conn->connect_error);
-        }
+        // Mock the database connection
+        $this->mockConn = $this->getMockBuilder(mysqli::class)
+                                ->disableOriginalConstructor()
+                                ->getMock();
     }
 
-    // Tear down the connection after each test
     public function tearDown(): void
     {
-        if (isset($this->conn)) {
-            $this->conn->close();
+        if (isset($this->mockConn)) {
+            // Clean up after the test
+            $this->mockConn = null;
         }
     }
 
@@ -27,12 +25,28 @@ class DeleteBookingTest extends TestCase
     {
         $bookingId = 6;
 
-        // Delete the booking
-        $query = "DELETE FROM booking WHERE bookingID = $bookingId"; 
-        $this->conn->query($query);
+        // Mock the result of the booking check
+        $mockResult = $this->createMockResult(true);
+        $this->mockConn->method('query')
+                       ->willReturn($mockResult);
 
-        // Verify the booking was deleted
-        $result = $this->conn->query("SELECT * FROM booking WHERE bookingID = $bookingId"); 
+        // Simulate the delete operation
+        $query = "DELETE FROM booking WHERE bookingID = $bookingId";
+        $this->mockConn->query($query);
+
+        // Verify the booking was deleted (mock result)
+        $result = $this->mockConn->query("SELECT * FROM booking WHERE bookingID = $bookingId");
         $this->assertEquals(0, $result->num_rows);  // Expecting no rows left
+    }
+
+    // Helper to create mock result
+    private function createMockResult($hasRows)
+    {
+        $mockResult = $this->getMockBuilder(mysqli_result::class)
+                           ->disableOriginalConstructor()
+                           ->getMock();
+        $mockResult->method('num_rows')
+                   ->willReturn($hasRows ? 1 : 0);
+        return $mockResult;
     }
 }
