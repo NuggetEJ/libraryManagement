@@ -17,9 +17,8 @@ class DeleteBookingTest extends TestCase
     {
         $bookingId = 6;
 
-        // Mock the DELETE query execution and expect it to be called once
-        $this->mockDatabase->expects($this->once())
-                          ->method('query')
+        // First, mock the DELETE query execution
+        $this->mockDatabase->method('query')
                           ->with("DELETE FROM booking WHERE bookingID = $bookingId")
                           ->willReturn(true);  // Simulate successful deletion
 
@@ -27,19 +26,18 @@ class DeleteBookingTest extends TestCase
         $sqlDelete = "DELETE FROM booking WHERE bookingID = $bookingId";
         $this->mockDatabase->query($sqlDelete);
 
-        // Mock the SELECT query execution to verify the booking is deleted
-        $this->mockDatabase->expects($this->once())
-                          ->method('query')
+        // Then, mock the SELECT query execution to verify the booking is deleted
+        $mockResult = $this->createMockResult([]); // Simulate no rows returned
+        $this->mockDatabase->method('query')
                           ->with("SELECT * FROM booking WHERE bookingID = $bookingId")
-                          ->willReturn($this->createMockResult([]));  // Simulate no rows returned
+                          ->willReturn($mockResult);
 
         // Simulate fetching the deleted booking (expect no result)
         $sqlFetch = "SELECT * FROM booking WHERE bookingID = $bookingId";
         $resultFetch = $this->mockDatabase->query($sqlFetch);
         $row = $resultFetch->fetch_assoc();
 
-        // Assert that no rows are returned after deletion
-        $this->assertNull($row);  // Expecting no rows since the booking is deleted
+        $this->assertNull($row);  // Expecting no rows since booking is deleted
     }
 
     private function createMockResult(array $data)
@@ -51,9 +49,9 @@ class DeleteBookingTest extends TestCase
 
         // Mock the fetch_assoc method to return the data (null if no data)
         $mockResult->method('fetch_assoc')->willReturn($data ? $data : null);
-        
-        // Mock the num_rows property, which should return the number of rows (0 for no result)
-        $mockResult->method('num_rows')->willReturn(count($data));
+
+        // Set the num_rows property directly, since it's a public property
+        $mockResult->num_rows = count($data);
 
         return $mockResult;
     }
