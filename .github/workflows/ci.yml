@@ -23,9 +23,6 @@ jobs:
       # Step 3: Install dependencies
       - name: Install dependencies
         run: |
-          sudo apt-get install unzip  # Install unzip if needed
-          curl -sS https://getcomposer.org/installer | php  # Install Composer
-          mv composer.phar /usr/local/bin/composer  # Move Composer to global bin
           composer install  # Install PHP dependencies
 
       # Step 4: Run PHPUnit tests
