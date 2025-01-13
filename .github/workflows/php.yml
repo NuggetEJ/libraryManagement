@@ -28,7 +28,11 @@ jobs:
           mv composer.phar /usr/local/bin/composer  # Move Composer to global bin
           composer install  # Install PHP dependencies
 
-      # Step 4: Run PHPUnit tests (uses phpunit.xml configuration)
+      # Step 4: Set up environment variables for database connection
+      - name: Set up environment variables
+        run: echo "DATABASE_URL=mysql://root:@localhost:3306/library" >> $GITHUB_ENV
+
+      # Step 5: Run PHPUnit tests (uses phpunit.xml configuration)
       - name: Run PHPUnit tests
         run: |
           ./vendor/bin/phpunit --configuration phpunit.xml  # Run all tests defined in phpunit.xml
