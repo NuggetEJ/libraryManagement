@@ -1,7 +1,7 @@
 <?php
 use PHPUnit\Framework\TestCase;
 
-class MockMysqliResult {
+class MockMysqliResult extends mysqli_result {
     public $num_rows;
 
     public function __construct($num_rows) {
@@ -41,7 +41,7 @@ class DeleteBookingTest extends TestCase
         $this->mockConn->method('query')
                        ->willReturnCallback(function($query) use ($bookingId, $mockResult) {
                            if (strpos($query, 'DELETE FROM booking') !== false) {
-                               return true; // Simulate successful delete
+                               return true; // Simulate successful delete (true for DELETE)
                            }
                            // Simulate SELECT query returning 0 rows (no results)
                            return $mockResult;
