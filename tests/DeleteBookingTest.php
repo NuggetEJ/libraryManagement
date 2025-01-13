@@ -28,7 +28,7 @@ class DeleteBookingTest extends TestCase
 
         // Create a custom mock for mysqli_result class and simulate num_rows behavior
         $mockResult = $this->getMockBuilder(stdClass::class) // Use stdClass to mock a custom object
-                           ->setMethods(['num_rows']) // Specify methods to mock
+                           ->onlyMethods(['num_rows']) // Use onlyMethods instead of setMethods
                            ->getMock();
 
         // Mock num_rows to return 0, simulating no rows after deletion
