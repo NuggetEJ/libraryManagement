@@ -1,5 +1,6 @@
 {
     "name": "nurir/librarymanagement",
+    "description": "A library management system project",
     "type": "project",
     "license": "MIT",
     "authors": [
