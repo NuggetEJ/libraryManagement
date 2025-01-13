@@ -7,15 +7,17 @@
         </testsuite>
     </testsuites>
 
+    <php>
+        <env name="DB_HOST" value="127.0.0.1"/>
+        <env name="DB_DATABASE" value="library"/>
+        <env name="DB_USER" value="root"/>
+        <env name="DB_PASSWORD" value=""/>
+    </php>
+    
     <coverage>
         <!-- Include the src/ directory in the code coverage report -->
         <include>
             <directory>src/</directory>
         </include>
     </coverage>
-
-    <env name="DB_HOST" value="127.0.0.1"/>
-    <env name="DB_DATABASE" value="library"/>
-    <env name="DB_USER" value="root"/>
-    <env name="DB_PASSWORD" value=""/>
 </phpunit>
