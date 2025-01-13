@@ -16,7 +16,7 @@ class DeleteBookingTest extends TestCase
     public function testDeleteBooking()
     {
         // Mock the booking ID to be deleted
-        $bookingID = 1;
+        $bookingID = 6;
 
         // Mock the query execution for deletion
         $this->mockDatabase->method('query')
