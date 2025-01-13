@@ -26,14 +26,13 @@ class DeleteBookingTest extends TestCase
     {
         $bookingId = 6;
 
-        // Create a custom mock class for mysqli_result to simulate num_rows
-        $mockResult = $this->getMockBuilder(mysqli_result::class)
-                           ->disableOriginalConstructor()
+        // Create a custom mock for mysqli_result class and simulate num_rows behavior
+        $mockResult = $this->getMockBuilder(stdClass::class) // Use stdClass to mock a custom object
+                           ->setMethods(['num_rows']) // Specify methods to mock
                            ->getMock();
 
-        // Use reflection to make the num_rows property accessible and mock it
-        $mockResult->method('num_rows')
-                   ->willReturn(0);  // Simulating the result after deletion (no rows found)
+        // Mock num_rows to return 0, simulating no rows after deletion
+        $mockResult->method('num_rows')->willReturn(0);
 
         // Mock the query method to return the mocked result
         $this->mockConn->method('query')
@@ -43,10 +42,10 @@ class DeleteBookingTest extends TestCase
         $query = "DELETE FROM booking WHERE bookingID = $bookingId";
         $this->mockConn->query($query);
 
-        // Verify that the query was executed and check if the booking was deleted
+        // Simulate the SELECT query and check if any rows remain
         $result = $this->mockConn->query("SELECT * FROM booking WHERE bookingID = $bookingId");
 
-        // Since we mock `num_rows` to return 0, the test will validate that no rows exist
-        $this->assertEquals(0, $result->num_rows);  // Expecting no rows left after delete
+        // Verify that no rows are returned (simulating the booking being deleted)
+        $this->assertEquals(0, $result->num_rows);
     }
 }
