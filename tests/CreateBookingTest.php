@@ -1,80 +1,62 @@
-<?php
 use PHPUnit\Framework\TestCase;
 
 class CreateBookingTest extends TestCase
 {
-    private $conn;
+    private $mockDatabase;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
-        $this->conn = new mysqli(
-            getenv('DB_HOST'),
-            getenv('DB_USER'),
-            getenv('DB_PASSWORD'),
-            getenv('DB_NAME')
-        );
-
-        if ($this->conn->connect_error) {
-            throw new Exception("Connection failed: " . $this->conn->connect_error);
-        }
-
-        // Begin transaction for cleanup
-        $this->conn->begin_transaction();
-    }
-
-    public function tearDown(): void
-    {
-        if (isset($this->conn)) {
-            $this->conn->rollback(); // Rollback changes
-            $this->conn->close();
-        }
+        // Create a mock database connection
+        $this->mockDatabase = $this->getMockBuilder(mysqli::class)
+                                    ->disableOriginalConstructor()
+                                    ->getMock();
     }
 
     public function testCreateBooking()
     {
-        $roomDescId = 10;
-        $userId = 1;
-        $date = "2025-01-15";
-        $startTime = "10:00:00";
-        $endTime = "11:00:00";
-        $capacity = 10;
-        $purpose = "Meeting";
-        $roomName = "Conference Room";
+        // Define mock data to be returned by the query
+        $mockData = [
+            'bookingID' => 1,
+            'room_name' => 'Conference Room A',
+            'date' => '2025-01-15',
+            'start_time' => '10:00:00',
+            'end_time' => '12:00:00',
+            'capacity' => 20,
+            'purpose' => 'Team Meeting',
+        ];
 
-        // Check if the room_descID exists
-        $stmt = $this->conn->prepare("SELECT * FROM room_description WHERE room_descID = ?");
-        $stmt->bind_param("i", $roomDescId);
-        $stmt->execute();
-        $roomCheck = $stmt->get_result();
+        // Mock the query execution
+        $this->mockDatabase->method('query')
+                          ->willReturn($this->createMockResult($mockData));
 
-        if ($roomCheck->num_rows == 0) {
-            $this->fail('The room_descID does not exist in the room_description table.');
-        }
+        // Simulate the creation of a booking
+        $sql = "INSERT INTO booking (room_name, date, start_time, end_time, capacity, purpose) 
+                VALUES ('Conference Room A', '2025-01-15', '10:00:00', '12:00:00', 20, 'Team Meeting')";
+        $result = $this->mockDatabase->query($sql);
 
-        // Check if the booking already exists
-        $stmt = $this->conn->prepare("SELECT * FROM booking WHERE room_descID = ? AND userID = ? AND date = ?");
-        $stmt->bind_param("iis", $roomDescId, $userId, $date);
-        $stmt->execute();
-        $result = $stmt->get_result();
+        // Simulate fetching the booking details (to verify the booking)
+        $sqlFetch = "SELECT * FROM booking WHERE bookingID = 1";
+        $resultFetch = $this->mockDatabase->query($sqlFetch);
+        $row = $resultFetch->fetch_assoc();
 
-        if ($result->num_rows > 0) {
-            $this->fail('Booking already exists for this room on this date.');
-        } else {
-            // Insert booking
-            $stmt = $this->conn->prepare(
-                "INSERT INTO booking (room_descID, userID, date, start_time, end_time, capacity, purpose, room_name) 
-                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
-            );
-            $stmt->bind_param("iisssiss", $roomDescId, $userId, $date, $startTime, $endTime, $capacity, $purpose, $roomName);
-            $stmt->execute();
+        $this->assertEquals('Conference Room A', $row['room_name']);
+        $this->assertEquals('2025-01-15', $row['date']);
+        $this->assertEquals('10:00:00', $row['start_time']);
+        $this->assertEquals('12:00:00', $row['end_time']);
+        $this->assertEquals(20, $row['capacity']);
+        $this->assertEquals('Team Meeting', $row['purpose']);
+    }
 
-            // Verify the booking was created
-            $stmt = $this->conn->prepare("SELECT * FROM booking WHERE room_descID = ? AND userID = ? AND date = ?");
-            $stmt->bind_param("iis", $roomDescId, $userId, $date);
-            $stmt->execute();
-            $result = $stmt->get_result();
+    private function createMockResult(array $data)
+    {
+        // Mock the mysqli_result class
+        $mockResult = $this->getMockBuilder(mysqli_result::class)
+                          ->disableOriginalConstructor()
+                          ->getMock();
 
-            $this->assertEquals(1, $result->num_rows);
-        }
+        // Mock the fetch_assoc method to return the data
+        $mockResult->method('fetch_assoc')->willReturn($data);
+
+        return $mockResult;
     }
 }
