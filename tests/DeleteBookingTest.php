@@ -1,61 +1,54 @@
 <?php
 use PHPUnit\Framework\TestCase;
 
-class MockMysqliResult extends mysqli_result {
-    public $num_rows;
-
-    public function __construct($num_rows) {
-        $this->num_rows = $num_rows;
-    }
-}
-
 class DeleteBookingTest extends TestCase
 {
-    private $mockConn;
+    private $mockDatabase;
 
-    // Mock database connection before each test
-    public function setUp(): void
+    protected function setUp(): void
     {
-        // Create the mock for the mysqli database connection
-        $this->mockConn = $this->getMockBuilder(mysqli::class)
-                                ->disableOriginalConstructor()
-                                ->getMock();
-    }
-
-    // Clean up after each test
-    public function tearDown(): void
-    {
-        if (isset($this->mockConn)) {
-            $this->mockConn = null;
-        }
+        // Create a mock database connection
+        $this->mockDatabase = $this->getMockBuilder(mysqli::class)
+                                    ->disableOriginalConstructor()
+                                    ->getMock();
     }
 
     public function testDeleteBooking()
     {
         $bookingId = 6;
 
-        // Create a mock result with num_rows set to 0 (no rows after deletion)
-        $mockResult = new MockMysqliResult(0);
+        // First, mock the DELETE query execution
+        $this->mockDatabase->method('query')
+                          ->with("DELETE FROM booking WHERE bookingID = $bookingId")
+                          ->willReturn(true);  // Simulate successful deletion
 
-        // Mock the query method to return true for DELETE operation (indicating success)
-        $this->mockConn->method('query')
-                       ->willReturnCallback(function($query) use ($bookingId, $mockResult) {
-                           if (strpos($query, 'DELETE FROM booking') !== false) {
-                               return true; // Simulate successful delete (true for DELETE)
-                           }
-                           // Simulate SELECT query returning 0 rows (no results)
-                           return $mockResult;
-                       });
+        // Simulate the deletion of a booking
+        $sqlDelete = "DELETE FROM booking WHERE bookingID = $bookingId";
+        $this->mockDatabase->query($sqlDelete);
 
-        // Simulate the delete operation
-        $deleteQuery = "DELETE FROM booking WHERE bookingID = $bookingId";
-        $this->assertTrue($this->mockConn->query($deleteQuery)); // Assert delete was successful
+        // Then, mock the SELECT query execution to verify the booking is deleted
+        $this->mockDatabase->method('query')
+                          ->with("SELECT * FROM booking WHERE bookingID = $bookingId")
+                          ->willReturn($this->createMockResult([]));  // Simulate no rows returned
 
-        // Simulate the SELECT query and check if any rows remain
-        $selectQuery = "SELECT * FROM booking WHERE bookingID = $bookingId";
-        $result = $this->mockConn->query($selectQuery);
+        // Simulate fetching the deleted booking (expect no result)
+        $sqlFetch = "SELECT * FROM booking WHERE bookingID = $bookingId";
+        $resultFetch = $this->mockDatabase->query($sqlFetch);
+        $row = $resultFetch->fetch_assoc();
 
-        // Verify that no rows are returned (simulating the booking being deleted)
-        $this->assertEquals(0, $result->num_rows);
+        $this->assertNull($row);  // Expecting no rows since booking is deleted
+    }
+
+    private function createMockResult(array $data)
+    {
+        // Mock the mysqli_result class
+        $mockResult = $this->getMockBuilder(mysqli_result::class)
+                          ->disableOriginalConstructor()
+                          ->getMock();
+
+        // Mock the fetch_assoc method to return the data (null if no data)
+        $mockResult->method('fetch_assoc')->willReturn($data ? $data : null);
+
+        return $mockResult;
     }
 }
