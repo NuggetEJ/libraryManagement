@@ -3,7 +3,7 @@ name: CI Pipeline
 on:
   push:
     branches:
-      - main  # Trigger the pipeline on push to main branch
+      - main  # Trigger the pipeline on push to the main branch
 
 jobs:
   build:
@@ -28,9 +28,7 @@ jobs:
           mv composer.phar /usr/local/bin/composer  # Move Composer to global bin
           composer install  # Install PHP dependencies
 
-      # Step 4: Run PHPUnit tests
+      # Step 4: Run PHPUnit tests (uses phpunit.xml configuration)
       - name: Run PHPUnit tests
         run: |
-          ./vendor/bin/phpunit --bootstrap tests/DeleteBookingTest.php  # Run tests using PHPUnit
-          ./vendor/bin/phpunit --bootstrap tests/CreateBookingTest.php
-          ./vendor/bin/phpunit --bootstrap tests/EditBookingTest.php
+          ./vendor/bin/phpunit --configuration phpunit.xml  # Run all tests defined in phpunit.xml
