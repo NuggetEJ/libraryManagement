@@ -3,32 +3,25 @@ name: CI Pipeline
 on:
   push:
     branches:
-      - main  # Trigger the pipeline on push to main branch
+      - main
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Use the latest Ubuntu environment
+    runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the code from the repository
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Step 2: Set up PHP
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'  # Set the PHP version you want to use
+          php-version: '8.1'
 
-      # Step 3: Install dependencies
       - name: Install dependencies
         run: |
-          sudo apt-get install unzip  # Install unzip if needed
-          curl -sS https://getcomposer.org/installer | php  # Install Composer
-          mv composer.phar /usr/local/bin/composer  # Move Composer to global bin
-          composer install  # Install PHP dependencies
+          composer install
 
-      # Step 4: Run PHPUnit tests
       - name: Run PHPUnit tests
         run: |
-          ./vendor/bin/phpunit --configuration phpunit.xml  # Run tests using PHPUnit
+          ./vendor/bin/phpunit --configuration phpunit.xml
