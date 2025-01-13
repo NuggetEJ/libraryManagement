@@ -18,38 +18,31 @@ class DeleteBookingTest extends TestCase
         // Mock the booking ID to be deleted
         $bookingID = 1;
 
-        // Mock the query execution for deletion
+        // Simulate the deletion query
         $this->mockDatabase->method('query')
-                          ->with("DELETE FROM booking WHERE bookingID = $bookingID")
-                          ->willReturn(true); // Simulate successful deletion
+                           ->will($this->returnCallback(function ($query) use ($bookingID) {
+                               if ($query === "DELETE FROM booking WHERE bookingID = $bookingID") {
+                                   return true; // Simulate successful deletion
+                               }
+                               if ($query === "SELECT * FROM booking WHERE bookingID = $bookingID") {
+                                   return $this->createMockResult([]); // Simulate empty result for deleted booking
+                               }
+                               return false; // Default behavior
+                           }));
 
-        // Simulate the deletion of a booking
+        // Execute and test the DELETE query
         $sqlDelete = "DELETE FROM booking WHERE bookingID = $bookingID";
         $resultDelete = $this->mockDatabase->query($sqlDelete);
-
-        // Assert that the deletion was successful
         $this->assertTrue($resultDelete);
 
-        // Simulate fetching the booking details to verify it has been deleted
+        // Execute and test the SELECT query
         $sqlFetch = "SELECT * FROM booking WHERE bookingID = $bookingID";
-
-        // Mock the result to return an empty result set
-        $mockResultFetch = $this->createMockResult([]);
-        
-        // Set up the mock to return the mock result for the SELECT query
-        $this->mockDatabase->method('query')
-                           ->with($sqlFetch)
-                           ->willReturn($mockResultFetch);
-
-        // Fetch the result
         $resultFetch = $this->mockDatabase->query($sqlFetch);
+        $this->assertNotFalse($resultFetch);
 
-        // Ensure that the fetch operation returns the mock result
-        $this->assertNotFalse($resultFetch); // Ensure resultFetch is not false
+        // Assert that the booking was deleted (no rows returned)
         $row = $resultFetch->fetch_assoc();
-
-        // Assert that no rows are returned (booking should be deleted)
-        $this->assertFalse($row); // Expecting false since the booking should not exist
+        $this->assertFalse($row); // Expect no data for the deleted booking
     }
 
     private function createMockResult(array $data)
